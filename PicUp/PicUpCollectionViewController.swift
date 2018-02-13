@@ -9,13 +9,12 @@
 import UIKit
 
 private let reuseIdentifier = "picUpCollectionViewCell"
+var cellCount = 0
 
 class PicUpCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.title = "PicUp"
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,6 +23,8 @@ class PicUpCollectionViewController: UICollectionViewController {
         self.collectionView!.register(PicUpCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "PicUp"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +50,7 @@ class PicUpCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return cellCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -91,4 +92,8 @@ class PicUpCollectionViewController: UICollectionViewController {
     }
     */
 
+    @objc func addButtonPressed() {
+        cellCount += 1
+        self.collectionView?.reloadData()
+    }
 }
