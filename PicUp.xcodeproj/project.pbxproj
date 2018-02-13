@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB5D842820327EAD00D1DE07 /* PicUpCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5D842720327EAD00D1DE07 /* PicUpCollectionViewController.swift */; };
+		CB5D842A203281B700D1DE07 /* PicUpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5D8429203281B700D1DE07 /* PicUpCollectionViewCell.swift */; };
 		CBEDC127202DEC5A000DD35D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDC126202DEC5A000DD35D /* AppDelegate.swift */; };
-		CBEDC129202DEC5A000DD35D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDC128202DEC5A000DD35D /* MasterViewController.swift */; };
-		CBEDC12B202DEC5A000DD35D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDC12A202DEC5A000DD35D /* DetailViewController.swift */; };
 		CBEDC12E202DEC5A000DD35D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBEDC12C202DEC5A000DD35D /* Main.storyboard */; };
 		CBEDC130202DEC5A000DD35D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBEDC12F202DEC5A000DD35D /* Assets.xcassets */; };
 		CBEDC133202DEC5A000DD35D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBEDC131202DEC5A000DD35D /* LaunchScreen.storyboard */; };
@@ -35,10 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB5D842720327EAD00D1DE07 /* PicUpCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicUpCollectionViewController.swift; sourceTree = "<group>"; };
+		CB5D8429203281B700D1DE07 /* PicUpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicUpCollectionViewCell.swift; sourceTree = "<group>"; };
 		CBEDC123202DEC5A000DD35D /* PicUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBEDC126202DEC5A000DD35D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CBEDC128202DEC5A000DD35D /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		CBEDC12A202DEC5A000DD35D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CBEDC12D202DEC5A000DD35D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBEDC12F202DEC5A000DD35D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBEDC132202DEC5A000DD35D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,12 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				CBEDC126202DEC5A000DD35D /* AppDelegate.swift */,
-				CBEDC128202DEC5A000DD35D /* MasterViewController.swift */,
-				CBEDC12A202DEC5A000DD35D /* DetailViewController.swift */,
 				CBEDC12C202DEC5A000DD35D /* Main.storyboard */,
 				CBEDC12F202DEC5A000DD35D /* Assets.xcassets */,
 				CBEDC131202DEC5A000DD35D /* LaunchScreen.storyboard */,
 				CBEDC134202DEC5A000DD35D /* Info.plist */,
+				CB5D842720327EAD00D1DE07 /* PicUpCollectionViewController.swift */,
+				CB5D8429203281B700D1DE07 /* PicUpCollectionViewCell.swift */,
 			);
 			path = PicUp;
 			sourceTree = "<group>";
@@ -262,8 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBEDC12B202DEC5A000DD35D /* DetailViewController.swift in Sources */,
-				CBEDC129202DEC5A000DD35D /* MasterViewController.swift in Sources */,
+				CB5D842820327EAD00D1DE07 /* PicUpCollectionViewController.swift in Sources */,
+				CB5D842A203281B700D1DE07 /* PicUpCollectionViewCell.swift in Sources */,
 				CBEDC127202DEC5A000DD35D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
