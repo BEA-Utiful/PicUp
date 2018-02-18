@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlbumCellDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var albums : [Album] = []
@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         self.navigationItem.title = "Albums"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
+        self.navigationItem.rightBarButtonItem = editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +36,22 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         destination.album = senderCell.album
     }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return !isEditing
+    }
  
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        self.navigationItem.leftBarButtonItem?.isEnabled = !editing
+        
+        let indexPaths = collectionView.indexPathsForVisibleItems
+        for indexPath in indexPaths {
+            let cell = collectionView.cellForItem(at: indexPath) as! AlbumCollectionViewCell
+            cell.isEditing = editing
+        }
+    }
 
     // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,18 +63,41 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         let album = albums[indexPath.row]
         cell.setAlbum(album)
+        cell.isEditing = isEditing
+        cell.delegate = self
         
         return cell
     }
     
     
-    // MARK: UICollectionViewDelegate
+    // MARK: AlbumCellDelegate
+    func delete(cell: AlbumCollectionViewCell) {
+        let alertController = UIAlertController(title: "Delete Album", message: "Are you sure to delete this cell?", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            if let indexPath = self.collectionView.indexPath(for: cell) {
+                self.albums.remove(at: indexPath.row)
+                self.collectionView.reloadData()
+            }
+        }))
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
     
     
     // MARK: Member Methods
     @objc func addButtonPressed() {
-        albums.append(Album(named: "Test", imageNamed: "test.png"))
-        collectionView.reloadData()
+        let alertController = UIAlertController(title: "New Album", message: "Enter new album  name", preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: nil)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            if let albumName = alertController.textFields?.first?.text {
+                self.albums.append(Album(named: albumName, imageNamed: "test.png"))
+                self.collectionView.reloadData()
+            }
+        }))
+        
+        present(alertController, animated: true, completion: nil)
     }
 }

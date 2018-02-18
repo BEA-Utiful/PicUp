@@ -9,6 +9,7 @@
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,12 +52,30 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZT-y5-egj">
+                                                    <rect key="frame" x="8" y="8" width="22" height="22"/>
+                                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="EtM-hw-W7m"/>
+                                                        <constraint firstAttribute="width" constant="22" id="RRJ-Ns-84E"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="38"/>
+                                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                                    <state key="normal" title="-">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonPressed:" destination="lar-PD-jtV" eventType="touchUpInside" id="yUa-BQ-pJj"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="BFY-dS-z86" firstAttribute="top" secondItem="lar-PD-jtV" secondAttribute="top" id="8wg-z4-xey"/>
+                                            <constraint firstItem="qZT-y5-egj" firstAttribute="leading" secondItem="lar-PD-jtV" secondAttribute="leadingMargin" id="CEO-sd-9g7"/>
                                             <constraint firstItem="Ci2-MB-4dY" firstAttribute="width" secondItem="lar-PD-jtV" secondAttribute="width" id="K1D-4C-ZZk"/>
                                             <constraint firstItem="BFY-dS-z86" firstAttribute="leading" secondItem="lar-PD-jtV" secondAttribute="leading" id="QzU-Ye-cwZ"/>
+                                            <constraint firstItem="qZT-y5-egj" firstAttribute="top" secondItem="lar-PD-jtV" secondAttribute="topMargin" id="Vt7-aZ-ewe"/>
                                             <constraint firstItem="Ci2-MB-4dY" firstAttribute="centerX" secondItem="lar-PD-jtV" secondAttribute="centerX" id="aDN-X5-sF4"/>
                                             <constraint firstAttribute="trailing" secondItem="BFY-dS-z86" secondAttribute="trailing" id="bHq-EE-Nnm"/>
                                             <constraint firstItem="Ci2-MB-4dY" firstAttribute="firstBaseline" secondItem="BFY-dS-z86" secondAttribute="baseline" constant="24.333333333333332" symbolType="layoutAnchor" id="djw-7L-mDJ"/>
@@ -64,6 +83,7 @@
                                         <connections>
                                             <outlet property="albumImageView" destination="BFY-dS-z86" id="yY0-4k-G0P"/>
                                             <outlet property="albumNameLabel" destination="Ci2-MB-4dY" id="NqN-Rb-oZ9"/>
+                                            <outlet property="deleteButton" destination="qZT-y5-egj" id="MgI-iY-f5X"/>
                                             <segue destination="APO-rP-7nC" kind="push" identifier="albumDetailSegue" id="y3O-bU-rDE">
                                                 <segue key="commit" inheritsFrom="parent" id="pTO-iw-Ksl"/>
                                                 <segue key="preview" inheritsFrom="commit" id="hdu-iW-GD4"/>
