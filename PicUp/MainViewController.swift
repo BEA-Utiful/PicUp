@@ -72,9 +72,10 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // MARK: AlbumCellDelegate
     func delete(cell: AlbumCollectionViewCell) {
-        let alertController = UIAlertController(title: "Delete Album", message: "Are you sure to delete this cell?", preferredStyle: .alert)
+        let albumName = cell.albumNameLabel.text!
+        let alertController = UIAlertController(title: "Delete \"\(albumName)\"", message: "Are you sure you want to delete the album \"\(albumName)\"?", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (action) in
             if let indexPath = self.collectionView.indexPath(for: cell) {
                 self.albums.remove(at: indexPath.row)
                 self.collectionView.reloadData()
