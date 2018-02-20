@@ -72,8 +72,15 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // MARK: AlbumCellDelegate
     func delete(cell: AlbumCollectionViewCell) {
+        let alertController : UIAlertController
         let albumName = cell.albumNameLabel.text!
-        let alertController = UIAlertController(title: "Delete \"\(albumName)\"", message: "Are you sure you want to delete the album \"\(albumName)\"?", preferredStyle: .actionSheet)
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            alertController = UIAlertController(title: "Delete \"\(albumName)\"", message: "Are you sure you want to delete the album \"\(albumName)\"?", preferredStyle: .actionSheet)
+        } else {
+            alertController = UIAlertController(title: "Delete \"\(albumName)\"", message: "Are you sure you want to delete the album \"\(albumName)\"?", preferredStyle: .alert)
+        }
+        
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (action) in
             if let indexPath = self.collectionView.indexPath(for: cell) {
