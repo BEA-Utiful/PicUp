@@ -8,18 +8,22 @@
 
 import UIKit
 
-class AlbumDetailViewController: UIViewController {
-    @IBOutlet weak var albumDetailImageView: UIImageView!
-    
+class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     weak var album: Album!
-
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var isShowAll = true {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = album.albumName
-        
-        albumDetailImageView.image = UIImage(named: album.albumImageName)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(showAllButtonPressed))
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +31,10 @@ class AlbumDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @objc func showAllButtonPressed() {
+        isShowAll = !isShowAll
+    }
 
     /*
     // MARK: - Navigation
@@ -38,5 +46,25 @@ class AlbumDetailViewController: UIViewController {
     }
     */
 
+ 
+    // MARK: UICollectionViewDataSource
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if isShowAll {
+            return 1
+        } else {
+            return 3
+        }
+    }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "albumDetailCell", for: indexPath) as! AlbumDetailCollectionViewCell
+        
+        cell.imageView.image = #imageLiteral(resourceName: "test.png")
+        
+        return cell
+    }
 }

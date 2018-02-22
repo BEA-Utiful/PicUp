@@ -123,24 +123,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hFP-XJ-Z8s">
-                                <rect key="frame" x="0.0" y="64" width="414" height="233"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="hFP-XJ-Z8s" secondAttribute="height" multiplier="16:9" id="lX1-2G-WQn"/>
-                                </constraints>
-                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O2v-fj-wn9">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hgY-Me-IaF">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="albumDetailCell" id="cYq-K4-uy0" customClass="AlbumDetailCollectionViewCell" customModule="PicUp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XsV-Mf-UDH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="XsV-Mf-UDH" secondAttribute="bottom" id="5Yr-Og-7ok"/>
+                                            <constraint firstItem="XsV-Mf-UDH" firstAttribute="leading" secondItem="cYq-K4-uy0" secondAttribute="leading" id="Hp4-6U-cLx"/>
+                                            <constraint firstAttribute="trailing" secondItem="XsV-Mf-UDH" secondAttribute="trailing" id="akf-dw-MvD"/>
+                                            <constraint firstItem="XsV-Mf-UDH" firstAttribute="top" secondItem="cYq-K4-uy0" secondAttribute="top" id="pXh-Q8-ae7"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="XsV-Mf-UDH" id="3F3-CW-Gw3"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="APO-rP-7nC" id="dYi-BG-7Pi"/>
+                                    <outlet property="delegate" destination="APO-rP-7nC" id="356-Ko-eiq"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hFP-XJ-Z8s" firstAttribute="top" secondItem="MfM-JV-zxg" secondAttribute="top" id="Qcz-ZG-fkU"/>
-                            <constraint firstItem="hFP-XJ-Z8s" firstAttribute="trailing" secondItem="MfM-JV-zxg" secondAttribute="trailing" id="h4g-l0-0Cn"/>
-                            <constraint firstItem="hFP-XJ-Z8s" firstAttribute="leading" secondItem="MfM-JV-zxg" secondAttribute="leading" id="nXR-aa-Anw"/>
+                            <constraint firstItem="MfM-JV-zxg" firstAttribute="bottom" secondItem="O2v-fj-wn9" secondAttribute="bottom" id="33j-MR-DaH"/>
+                            <constraint firstItem="MfM-JV-zxg" firstAttribute="trailing" secondItem="O2v-fj-wn9" secondAttribute="trailing" id="KI1-Tg-zgw"/>
+                            <constraint firstItem="O2v-fj-wn9" firstAttribute="top" secondItem="MfM-JV-zxg" secondAttribute="top" id="gvX-kA-RXC"/>
+                            <constraint firstItem="O2v-fj-wn9" firstAttribute="leading" secondItem="MfM-JV-zxg" secondAttribute="leading" id="tHp-my-b5y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MfM-JV-zxg"/>
                     </view>
                     <navigationItem key="navigationItem" id="naM-eD-G45"/>
                     <connections>
-                        <outlet property="albumDetailImageView" destination="hFP-XJ-Z8s" id="TP9-cw-DmT"/>
+                        <outlet property="collectionView" destination="O2v-fj-wn9" id="gx5-BV-rI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="otT-rO-Ioh" userLabel="First Responder" sceneMemberID="firstResponder"/>

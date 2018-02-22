@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB1EA47C203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1EA47B203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift */; };
 		CB5C656F2039115100EA0067 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C656E2039115100EA0067 /* MainViewController.swift */; };
 		CB5C65712039134400EA0067 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C65702039134400EA0067 /* AlbumCollectionViewCell.swift */; };
 		CB5C65732039143100EA0067 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C65722039143100EA0067 /* Album.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB1EA47B203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB5C656E2039115100EA0067 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CB5C65702039134400EA0067 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB5C65722039143100EA0067 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				CB5C657920391B2D00EA0067 /* AlbumDetailViewController.swift */,
+				CB1EA47B203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift */,
 			);
 			path = AlbumDetail;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				CB5C657A20391B2D00EA0067 /* AlbumDetailViewController.swift in Sources */,
 				CBEDC127202DEC5A000DD35D /* AppDelegate.swift in Sources */,
 				CB5C65732039143100EA0067 /* Album.swift in Sources */,
+				CB1EA47C203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

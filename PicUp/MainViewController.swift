@@ -96,7 +96,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // MARK: Member Methods
     @objc func addButtonPressed() {
-        let alertController = UIAlertController(title: "New Album", message: "Enter new album  name", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "New Album", message: "Enter new album name", preferredStyle: .alert)
         alertController.addTextField(configurationHandler: nil)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
