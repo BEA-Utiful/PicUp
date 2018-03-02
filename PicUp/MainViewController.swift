@@ -19,6 +19,10 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.navigationItem.title = "Albums"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
         self.navigationItem.rightBarButtonItem = editButtonItem
+        
+        /* For only Wedding */
+        let album = Album(named: "Wedding", imageNamed: "wedding.png")
+        albums.append(album)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +38,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let destination = segue.destination as! AlbumDetailViewController
         let senderCell = sender as! AlbumCollectionViewCell
         
-        destination.album = senderCell.album
+        destination.title = senderCell.album.albumName
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
