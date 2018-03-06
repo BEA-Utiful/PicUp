@@ -152,10 +152,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O2v-fj-wn9">
-                                <rect key="frame" x="0.0" y="64" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="egs-TF-aXa"/>
+                                    <constraint firstAttribute="height" constant="50" id="egs-TF-aXa"/>
                                 </constraints>
                                 <collectionViewLayout key="collectionViewLayout" id="p1T-Cd-Izm" customClass="PhotoCollectionViewFlowLayout" customModule="PicUp" customModuleProvider="target"/>
                                 <cells>
@@ -191,8 +191,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MfM-JV-zxg" firstAttribute="trailing" secondItem="O2v-fj-wn9" secondAttribute="trailing" id="KI1-Tg-zgw"/>
-                            <constraint firstItem="O2v-fj-wn9" firstAttribute="top" secondItem="MfM-JV-zxg" secondAttribute="top" id="gvX-kA-RXC"/>
                             <constraint firstItem="O2v-fj-wn9" firstAttribute="leading" secondItem="MfM-JV-zxg" secondAttribute="leading" id="tHp-my-b5y"/>
+                            <constraint firstItem="MfM-JV-zxg" firstAttribute="bottom" secondItem="O2v-fj-wn9" secondAttribute="bottom" id="vc7-44-ELg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MfM-JV-zxg"/>
                     </view>

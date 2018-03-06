@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DownloadModalViewDelegate {
+class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DownloadModalViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var images: [String] = []
@@ -17,6 +17,9 @@ class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture(gesture:))))
+        
+        
         let downloadModalViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "downloadModalViewController") as! DownloadModalViewController
         
         downloadModalViewController.title = self.navigationItem.title
@@ -38,6 +41,23 @@ class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UIC
         }
         
         collectionView.reloadData()
+    }
+    
+    @objc func handleLongPressGesture(gesture: UILongPressGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
+                break
+            }
+            
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
     }
     
 
@@ -86,21 +106,22 @@ class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     
-    // MARK: UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
+    // MARK: UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.size.width - 12) / 4.0
-        
-        return CGSize(width: width, height: width)
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let temp = images[sourceIndexPath.row]
+        images[sourceIndexPath.row] = images[destinationIndexPath.row]
+        images[destinationIndexPath.row] = temp
     }
-
+    
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
