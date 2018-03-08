@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB099A072050C7E80036DE0A /* AlbumDetailPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB099A062050C7E80036DE0A /* AlbumDetailPhotoCollectionViewCell.swift */; };
 		CB1EA47C203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1EA47B203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift */; };
 		CB3A4D212047CB6000A0761D /* wedding.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3A4D202047CB5F00A0761D /* wedding.png */; };
 		CB3A4D25204924AA00A0761D /* DownloadModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A4D24204924AA00A0761D /* DownloadModalViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB099A062050C7E80036DE0A /* AlbumDetailPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB1EA47B203EF89800B04C70 /* AlbumDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3A4D202047CB5F00A0761D /* wedding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wedding.png; sourceTree = "<group>"; };
 		CB3A4D24204924AA00A0761D /* DownloadModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModalViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				CBB3E1C22042A1B200212CD0 /* PhotoSelectViewController.swift */,
 				CBB3E1C4204511B800212CD0 /* PhotoCollectionViewFlowLayout.swift */,
 				CB3A4D24204924AA00A0761D /* DownloadModalViewController.swift */,
+				CB099A062050C7E80036DE0A /* AlbumDetailPhotoCollectionViewCell.swift */,
 			);
 			path = AlbumDetail;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			files = (
 				CB5C65712039134400EA0067 /* AlbumCollectionViewCell.swift in Sources */,
 				CBB3E1C32042A1B200212CD0 /* PhotoSelectViewController.swift in Sources */,
+				CB099A072050C7E80036DE0A /* AlbumDetailPhotoCollectionViewCell.swift in Sources */,
 				CB5C656F2039115100EA0067 /* MainViewController.swift in Sources */,
 				CB5C657A20391B2D00EA0067 /* AlbumDetailViewController.swift in Sources */,
 				CBEDC127202DEC5A000DD35D /* AppDelegate.swift in Sources */,

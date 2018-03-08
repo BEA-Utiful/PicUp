@@ -8,8 +8,9 @@
 
 import UIKit
 
-class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DownloadModalViewDelegate {
-    @IBOutlet weak var collectionView: UICollectionView!
+class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DownloadModalViewDelegate {
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var thumnailCollectionView: UICollectionView!
     
     var images: [String] = []
     
@@ -17,8 +18,7 @@ class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture(gesture:))))
-        
+        thumnailCollectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture(gesture:))))
         
         let downloadModalViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "downloadModalViewController") as! DownloadModalViewController
         
@@ -40,23 +40,24 @@ class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UIC
             images = []
         }
         
-        collectionView.reloadData()
+        photoCollectionView.reloadData()
+        thumnailCollectionView.reloadData()
     }
     
     @objc func handleLongPressGesture(gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
         case .began:
-            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
+            guard let selectedIndexPath = thumnailCollectionView.indexPathForItem(at: gesture.location(in: thumnailCollectionView)) else {
                 break
             }
             
-            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            thumnailCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            thumnailCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
         case .ended:
-            collectionView.endInteractiveMovement()
+            thumnailCollectionView.endInteractiveMovement()
         default:
-            collectionView.cancelInteractiveMovement()
+            thumnailCollectionView.cancelInteractiveMovement()
         }
     }
     
@@ -72,7 +73,7 @@ class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.reloadData()
+        thumnailCollectionView.reloadData()
     }
 
     /*
@@ -96,41 +97,78 @@ class AlbumDetailViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "albumDetailCell", for: indexPath) as! AlbumDetailCollectionViewCell
-        
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let imagesPath = documentsURL?.appendingPathComponent(self.navigationItem.title!).path
         
-        cell.imageView.image = UIImage(contentsOfFile: "\(imagesPath!)/\(images[indexPath.row])")
-        
-        return cell
+        if collectionView == photoCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "albumDetailPhotoCell", for: indexPath) as! AlbumDetailPhotoCollectionViewCell
+            
+            cell.imageView.image = UIImage(contentsOfFile: "\(imagesPath!)/\(images[indexPath.row])")
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "albumDetailCell", for: indexPath) as! AlbumDetailCollectionViewCell
+            
+            cell.imageView.image = UIImage(contentsOfFile: "\(imagesPath!)/\(images[indexPath.row])")
+            
+            return cell
+        }
     }
     
     // MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        thumnailCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        photoCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
+        return collectionView == thumnailCollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let temp = images[sourceIndexPath.row]
-        images[sourceIndexPath.row] = images[destinationIndexPath.row]
-        images[destinationIndexPath.row] = temp
+        if collectionView == thumnailCollectionView {
+            let temp = images[sourceIndexPath.row]
+            images[sourceIndexPath.row] = images[destinationIndexPath.row]
+            images[destinationIndexPath.row] = temp
+            
+            photoCollectionView.reloadData()
+        }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == thumnailCollectionView {
+            if let indexPath = thumnailCollectionView.indexPathForItem(at: CGPoint(x: thumnailCollectionView.center.x + thumnailCollectionView.contentOffset.x, y: 25)) {
+                photoCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+            }
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == photoCollectionView {
+            if let indexPath = photoCollectionView.indexPathsForVisibleItems.first {
+                thumnailCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+            }
+        }
+    }
+    
+    // MARK: UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == photoCollectionView {
+            return collectionView.frame.size
+        } else {
+            return CGSize(width: 25, height: 50)
+        }
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        var insets = self.collectionView.contentInset
-        let value = (self.view.frame.size.width - (self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.width) * 0.5
+        var insets = self.thumnailCollectionView.contentInset
+        let value = (self.view.frame.size.width - (self.thumnailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.width) * 0.5
         
         insets.left = value
         insets.right = value
-        self.collectionView.contentInset = insets
-        self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        self.thumnailCollectionView.contentInset = insets
+        self.thumnailCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
     }
 }

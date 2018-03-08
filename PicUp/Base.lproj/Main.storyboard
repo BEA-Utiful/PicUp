@@ -187,10 +187,48 @@
                                     <outlet property="delegate" destination="APO-rP-7nC" id="356-Ko-eiq"/>
                                 </connections>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3t3-j3-SPo">
+                                <rect key="frame" x="0.0" y="64" width="414" height="614"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewLayout key="collectionViewLayout" id="vX7-qz-uH6" customClass="PhotoCollectionViewFlowLayout" customModule="PicUp" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="albumDetailPhotoCell" id="XCI-L7-xBg" customClass="AlbumDetailPhotoCollectionViewCell" customModule="PicUp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EJy-rA-SDp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="EJy-rA-SDp" secondAttribute="trailing" id="DF6-Y4-Wv2"/>
+                                            <constraint firstItem="EJy-rA-SDp" firstAttribute="leading" secondItem="XCI-L7-xBg" secondAttribute="leading" id="Wmg-el-4jq"/>
+                                            <constraint firstItem="EJy-rA-SDp" firstAttribute="top" secondItem="XCI-L7-xBg" secondAttribute="top" id="YNU-Y6-IGl"/>
+                                            <constraint firstAttribute="bottom" secondItem="EJy-rA-SDp" secondAttribute="bottom" id="urT-eg-yDn"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="EJy-rA-SDp" id="4VS-4u-ipz"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="APO-rP-7nC" id="pWu-tp-muX"/>
+                                    <outlet property="delegate" destination="APO-rP-7nC" id="Mxb-1P-Qi6"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="3t3-j3-SPo" firstAttribute="top" secondItem="MfM-JV-zxg" secondAttribute="top" id="GSE-v6-Lzv"/>
                             <constraint firstItem="MfM-JV-zxg" firstAttribute="trailing" secondItem="O2v-fj-wn9" secondAttribute="trailing" id="KI1-Tg-zgw"/>
+                            <constraint firstItem="3t3-j3-SPo" firstAttribute="leading" secondItem="O2v-fj-wn9" secondAttribute="leading" id="SXr-qP-9lb"/>
+                            <constraint firstItem="3t3-j3-SPo" firstAttribute="trailing" secondItem="O2v-fj-wn9" secondAttribute="trailing" id="fsq-xj-EPs"/>
+                            <constraint firstItem="O2v-fj-wn9" firstAttribute="top" secondItem="3t3-j3-SPo" secondAttribute="bottom" constant="8" symbolic="YES" id="ngb-Xa-fGC"/>
                             <constraint firstItem="O2v-fj-wn9" firstAttribute="leading" secondItem="MfM-JV-zxg" secondAttribute="leading" id="tHp-my-b5y"/>
                             <constraint firstItem="MfM-JV-zxg" firstAttribute="bottom" secondItem="O2v-fj-wn9" secondAttribute="bottom" id="vc7-44-ELg"/>
                         </constraints>
@@ -198,7 +236,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="naM-eD-G45"/>
                     <connections>
-                        <outlet property="collectionView" destination="O2v-fj-wn9" id="gx5-BV-rI5"/>
+                        <outlet property="photoCollectionView" destination="3t3-j3-SPo" id="Ejw-qy-qhs"/>
+                        <outlet property="thumnailCollectionView" destination="O2v-fj-wn9" id="gx5-BV-rI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="otT-rO-Ioh" userLabel="First Responder" sceneMemberID="firstResponder"/>
